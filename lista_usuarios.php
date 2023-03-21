@@ -6,8 +6,6 @@
     session_set_cookie_params(43200);
     session_start(); // ready to go!;
     }
-
-    include_once('conexao.php');
     include_once('sistema.php');
 
     $sql_comando = "Select * from usuarios order by usu_id";

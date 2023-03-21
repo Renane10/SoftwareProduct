@@ -93,11 +93,8 @@ if (empty($_SESSION['id'])) {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </body>
 </html>

@@ -8,10 +8,6 @@ if (!isset($_SESSION)) {
     session_start(); // ready to go!;
 }
 
-if (empty($_SESSION['id'])) {
-    $_SESSION['msg'] = "Essa página não pode ser acessada sem login. Por favor, logue no sistema!";
-    header("Location: index.php");
-}
 //inclui arquivos necessários
 require_once("conexao.php");
 require_once("seguranca.php");

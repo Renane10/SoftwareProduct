@@ -6,7 +6,6 @@ if (!isset($_SESSION)){
     session_set_cookie_params(43200);
     session_start(); // ready to go!;
 }
-require_once("conexao.php");
 require_once("sistema.php");
 
 ?>
