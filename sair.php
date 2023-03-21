@@ -7,8 +7,5 @@
 	unset($_SESSION['funcao']);
 	unset($_SESSION['equipe']);
 	unset($_SESSION['menu']);
-    setcookie("ID", NULL, 1);
-    setcookie("TOKEN", NULL, 1);
-    setcookie("SECURE", NULL, 1);
 	header("Location: index.php");
 ?>
