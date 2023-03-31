@@ -44,6 +44,8 @@ include_once('funcao.php');
 
     <!-- Page level custom scripts -->
     <script src="js/datatables-demo.js"></script>
+
+    <link href="css/app.css" rel="stylesheet">
 </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

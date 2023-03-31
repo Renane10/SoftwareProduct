@@ -19,13 +19,15 @@
             $login 	= strtoupper($_POST["txtLogin"]);
         	$senha 	= strtoupper($_POST["txtSenha"]);
         	$nome   = strtoupper($_POST["txtNome"]);
-            
+            $_POST["ativo"] == 'on' ? $ativo = 'T' : $ativo = 'F';
+
 			$sql_comando = "update usuarios set ";
         	$sql_comando .= "usu_login = '$login',";
         	$sql_comando .= "usu_senha = '$senha',";            
-        	$sql_comando .= "usu_nome = '$nome'";
+        	$sql_comando .= "usu_nome = '$nome',";
+        	$sql_comando .= "ativo = '$ativo'";
         	$sql_comando .= "where usu_id = '".$_SESSION['reg_usuario']."'";
-        	echo $sql_comando.'<br>';
+        	//echo $sql_comando.'<br>';
 			$sql = mysqli_query($conn, $sql_comando);
 			
 			//*************************     ARQUIVOS     *************************************    
