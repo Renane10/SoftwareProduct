@@ -49,6 +49,16 @@
            }); 
         });         
     });
+    function deleteUsuario(usu_id){
+        $.ajax({
+            url:"mysql_usuario.php",
+            method:"post",
+            data:{usu_id:usu_id,
+                  btnAcao:'exc'}
+        }).done(function() {
+            window.location.reload(true);
+        });
+    }
 </script>
 <form method="POST" action="mysql_usuario.php" enctype="multipart/form-data">
 <div class="container theme-showcase" role="main">
@@ -99,7 +109,9 @@
                                 echo "<td>";
                                 ?>
                                     <!-- BOTÃO ALTERAR -->
-                                    <a type="button" name="diag" value="diag" id="<?php echo $linhas['usu_id'];?>" class="btn btn-success btn-circle btn-sm diag_data" title="Alterar informações"><i class="fas fa-pencil-alt"></i></a>
+                                    <a type="button" name="diag" value="diag" id="<?= $linhas['usu_id'];?>" class="btn btn-success btn-circle btn-sm diag_data" title="Alterar informações"><i class="fas fa-pencil-alt"></i></a>
+                                    <!-- BOTÃO Deletar -->
+                                    <a type="button"  onclick="deleteUsuario(<?= $linhas['usu_id'];?>)" class="btn btn-danger btn-circle btn-sm" title="Alterar informações"><i class="fas fa-close"></i></a>
 
                                 <?php
 

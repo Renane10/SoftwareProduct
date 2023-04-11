@@ -63,5 +63,12 @@
         	    header("Location: lista_usuarios.php");
         	}
             break;
+
+		case "exc":
+            $usu_id 	= $_POST["usu_id"];
+
+            $sql_comando = "DELETE FROM usuarios WHERE usu_id = '$usu_id' ";
+			$sql = mysqli_query($conn, $sql_comando);
+            break;
     }
 ?>

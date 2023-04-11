@@ -40,7 +40,3 @@
 	echo $tabDepend;
     }
 ?>
-
-<style>
-
-</style>
