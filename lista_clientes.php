@@ -16,7 +16,17 @@
 	$linhas = mysqli_num_rows($resultado);
 ?>
 <script language=javascript>
-    $(document).ready(function(){
+function deleteCliente(cli_id){
+        $.ajax({
+            url:"mysql_cliente.php",
+            method:"post",
+            data:{cli_id:cli_id,
+                  btnAcao:'exc'}
+        }).done(function() {
+            window.location.reload(true);
+        });
+    }
+$(document).ready(function(){
         $('.diag_data').click(function(){  
             var cli_id = $(this).attr("id");
             var msg_proc = cli_id;
@@ -103,7 +113,7 @@
                                 ?>
                                     <!-- BOTÃO ALTERAR -->
                                     <a type="button" name="diag" value="diag" id="<?php echo $linhas['cli_id'];?>" class="btn btn-success btn-circle btn-sm diag_data" title="Alterar informações"><i class="fas fa-pencil-alt"></i></a>
-
+                                    <a type="button"  onclick="deleteCliente(<?= $linhas['cli_id'];?>)" class="btn btn-danger btn-circle btn-sm" title="Excluir Cliente"><i class="fas fa-close"></i></a>
                                 <?php
 
                             }

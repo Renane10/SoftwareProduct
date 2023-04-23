@@ -8,7 +8,7 @@ if (!isset($_SESSION)) {
     session_start(); // ready to go!;
 }
 
-//inclui arquivos necessários
+//inclui arquivos necessÃ¡rios
 require_once("conexao.php");
 require_once("seguranca.php");
 include_once('funcao.php');
@@ -59,6 +59,10 @@ include_once('funcao.php');
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="lista_usuarios.php">Usuarios</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="lista_clientes.php">Clientes</a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="sair.php">Sair</a>
                         </li>

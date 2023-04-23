@@ -16,17 +16,16 @@
     
     switch ($_POST['btnAcao']) {
 		case "alt":
-            $login 	= strtoupper($_POST["txtLogin"]);
-        	$senha 	= strtoupper($_POST["txtSenha"]);
-        	$nome   = strtoupper($_POST["txtNome"]);
-            $_POST["ativo"] == 'on' ? $ativo = 'T' : $ativo = 'F';
+            $nome 	= strtoupper($_POST["txtNome"]);
+        	$endereco 	= strtoupper($_POST["txtEndereco"]);
+        	$telefone   = extract_numbers_tel($_POST["txtTelefone"]);
+    
 
-			$sql_comando = "update clients set ";
-        	$sql_comando .= "cli_login = '$login',";
-        	$sql_comando .= "cli_senha = '$senha',";            
+			$sql_comando = "update clientes set ";
         	$sql_comando .= "cli_nome = '$nome',";
-        	$sql_comando .= "ativo = '$ativo'";
-        	$sql_comando .= "where cli_id = '".$_SESSION['reg_cliente']."'";
+        	$sql_comando .= "cli_telefone = '$telefone',";            
+        	$sql_comando .= "cli_endereco = '$endereco'";
+        	$sql_comando .= "where cli_id = '".$_SESSION['reg_clientes']."'";
         	//echo $sql_comando.'<br>';
 			$sql = mysqli_query($conn, $sql_comando);
 			
@@ -47,12 +46,13 @@
             break;
 
 		case "inc":
-            $login 	= strtoupper($_POST["txtLogin"]);
-        	$senha 	= strtoupper($_POST["txtSenha"]);	
-        	$nome   = strtoupper($_POST["txtNome"]);
-
-            $sql_comando = "INSERT INTO usuarios VALUES(";
-            $sql_comando .= "'','$login','$nome','$senha','T')";
+            $nome 	= strtoupper($_POST["txtNome"]);
+        	$telefone   = extract_numbers_tel($_POST["txtTelefone"]);
+			$endereço 	= strtoupper($_POST["txtEndereço"]);
+        	
+    
+            $sql_comando = "INSERT INTO clientes VALUES(";
+            $sql_comando .= "'','$nome','$telefone','$endereço')";
 			$sql = mysqli_query($conn, $sql_comando);
 
 			if ($sql){
@@ -63,5 +63,10 @@
         	    header("Location: lista_clientes.php");
         	}
             break;
-    }
+		case "exc":
+			$cli_id     = $_POST["cli_id"];
+			$sql_comando = "DELETE FROM clientes WHERE cli_id = '$cli_id' ";
+			$sql = mysqli_query($conn, $sql_comando);
+			break;
+		}
 ?>

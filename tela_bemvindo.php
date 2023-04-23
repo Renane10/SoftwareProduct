@@ -13,5 +13,7 @@ require_once("sistema.php");
 <div align="center">
     <h2>Bem-vindo ao Tech ERP</h2>
     <h5>Renan Oliveira Gomes da Silva - 5B</h5>
+    <h5>Vinícius Galli Porfírio - 5B</h5>
+    <h5>Mateus de Souza Oliveira - 5B</h5>
     <img src="images/logo.png" alt="Logo Tech ERP" width="15%">
 </div>
