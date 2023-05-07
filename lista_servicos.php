@@ -91,6 +91,7 @@ $(document).ready(function(){
                                 <th>Custo Estimado</th>
                                 <th>Valor de Venda</th>
                                 <th>Tempo para execução (minutos)</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -102,6 +103,7 @@ $(document).ready(function(){
                                 <th>Custo Estimado</th>
                                 <th>Valor de Venda</th>
                                 <th>Tempo para execução (minutos)</th>
+                                <th>Ações</th>
                             </tr>
                         </tfoot>
                         <tbody style="text-transform:uppercase;">
