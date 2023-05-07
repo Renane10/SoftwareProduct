@@ -62,6 +62,9 @@ include_once('funcao.php');
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="lista_clientes.php">Clientes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="lista_servicos.php">Serviços</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="sair.php">Sair</a>
