@@ -29,15 +29,14 @@ function deleteServico(ser_id){
 $(document).ready(function(){
         $('.diag_data').click(function(){  
             var ser_id = $(this).attr("id");
-            var msg_proc = ser_id;
-            $('#ser_nome').val(ser_id);
+            $('#ser_id').val(ser_id);
             $('#titulo_proc').val('Alteração de Serviço ');
             $.ajax({  
                 url:"pesq_servicos_modal.php",  
                 method:"post",  
-                data:{msg_proc:msg_proc},  
+                data:{ser_id:ser_id},  
                 success:function(data){  
-                    $('#msg_proc').html(data);
+                    $('#ser_id').html(data);
                     $('#titulo_proc').html('Alteração de Serviço ');
                     $('#diagModal').modal("show");  
                 }  
@@ -114,9 +113,9 @@ $(document).ready(function(){
                                 echo "<td>".$linhas['ser_id']."</td>";
                                 echo "<td>".$linhas['ser_nome']."</td>";
                                 echo "<td>".$linhas['ser_descricao']."</td>";
-                                echo "<td>".$linhas['ser_valor_tabela']."</td>";
-                                echo "<td>".$linhas['ser_custo_estimado']."</td>";
-                                echo "<td>".$linhas['ser_valor_venda']."</td>";
+                                echo "<td> R$ ".number_format($linhas['ser_valor_tabela'], 2, ',','.')."</td>";
+                                echo "<td> R$ ".number_format($linhas['ser_custo_estimado'], 2, ',','.')."</td>";
+                                echo "<td> R$ ".number_format($linhas['ser_valor_venda'], 2, ',','.')."</td>";
                                 echo "<td>".$linhas['ser_tempo_minutos']."</td>";
                                 echo "<td>";
                                 ?>
@@ -166,8 +165,8 @@ $(document).ready(function(){
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h5 class="modal-body" name="msg_proc" id="msg_proc"></h5>
-                <input name="ser_nome" type="hidden" id="ser_nome">
+                <h5 class="modal-body" name="ser_id" id="ser_id"></h5>
+                <input name="ser_id" type="hidden" id="ser_id">
             </div>
             <div class="modal-footer" style="background-color: #75ad74;">
                 <button type="submit" class="btn btn-success btn-md" name="btnAcao" id="btnAcao" value="alt">

@@ -19,19 +19,19 @@
     //linha de valor tabela
     $tabDepend .= '<div  class="row">';
         $tabDepend .= '<div  class="col-md-4"><label class="control-label">Valor de tabela R$</label></div>';
-        $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control" id="txtValorTabela" name="txtValorTabela" size="10px";></div>';
+        $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control money2" id="txtValorTabela" name="txtValorTabela" size="10px";></div>';
         $tabDepend .= '</div></br>';
 
     //linha de custo estimado
     $tabDepend .= '<div  class="row">';
         $tabDepend .= '<div  class="col-md-4"><label class="control-label">Custo estimado R$</label></div>';
-        $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control" id="txtCustoEstimado" name="txtCustoEstimado" size="10px";></div>';
+        $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control money2" id="txtCustoEstimado" name="txtCustoEstimado" size="10px";></div>';
         $tabDepend .= '</div></br>';
 
     //linha de valor venda
         $tabDepend .= '<div  class="row">';
             $tabDepend .= '<div  class="col-md-4"><label class="control-label">Valor venda R$</label></div>';
-            $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control" id="txtValorvenda" name="txtValorvenda" size="10px";></div>';
+            $tabDepend .= '<div  class="col-md-8"><input type="text" class="form-control money2" id="txtValorvenda" name="txtValorvenda" size="10px";></div>';
             $tabDepend .= '</div></br>';
 
     //linha de descrição

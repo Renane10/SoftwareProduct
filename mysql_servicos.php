@@ -18,9 +18,12 @@
 		case "alt":
             $nome_servico 	= strtoupper($_POST["txtNomeServicos"]);
             $descricao  	= strtoupper($_POST["txtDescricao"]);
-        	$valor_tabela 	= number_format($_POST["txtValorTabela"], 2, ',', '.');
-            $custo_estimado = number_format($_POST["txtCustoEstimado"], 2, ',', '.');
-            $valor_venda    = number_format($_POST["txtValorvenda"], 2, ',', '.');
+        	$valor_tabela 	= str_replace('.', '', $_POST["txtValorTabela"]);
+			$valor_tabela 	= str_replace(',', '.', "$valor_tabela");
+			$custo_estimado = str_replace('.', '', $_POST["txtCustoEstimado"]);
+			$custo_estimado	= str_replace(',', '.', "$custo_estimado");
+			$valor_venda	= str_replace('.', '', $_POST["txtValorvenda"]);
+			$valor_venda	= str_replace(',', '.', "$valor_venda");
 			$tempo_minutos	= strtoupper($_POST["txtTempoMinutos"]);
 
 
@@ -28,8 +31,8 @@
         	$sql_comando .= "ser_nome = '$nome_servico',";
         	$sql_comando .= "ser_descricao = '$descricao',";            
         	$sql_comando .= "ser_valor_tabela = '$valor_tabela',";
-        	$sql_comando .= "ser_custo_estimado = '$custo_estimado'";
-			$sql_comando .= "ser_valor_venda = '$valor_venda'";
+        	$sql_comando .= "ser_custo_estimado = '$custo_estimado',";
+			$sql_comando .= "ser_valor_venda = '$valor_venda',";
 			$sql_comando .= "ser_tempo_minutos = '$tempo_minutos'";
         	$sql_comando .= "where ser_id = '".$_SESSION['reg_servicos']."'";
 
@@ -55,13 +58,16 @@
 		case "inc":
             $nome_servico 	= strtoupper($_POST["txtNomeServicos"]);
             $descricao  	= strtoupper($_POST["txtDescricao"]);
-        	$valor_tabela 	= number_format($_POST["txtValorTabela"], 2, ',', '.');
-            $custo_estimado = number_format($_POST["txtCustoEstimado"], 2, ',', '.');
-            $valor_venda    = number_format($_POST["txtValorvenda"], 2, ',', '.');
+        	$valor_tabela 	= str_replace('.', '', $_POST["txtValorTabela"]);
+			$valor_tabela 	= str_replace(',', '.', "$valor_tabela");
+			$custo_estimado = str_replace('.', '', $_POST["txtCustoEstimado"]);
+			$custo_estimado	= str_replace(',', '.', "$custo_estimado");
+			$valor_venda	= str_replace('.', '', $_POST["txtValorvenda"]);
+			$valor_venda	= str_replace(',', '.', "$valor_venda");
 			$tempo_minutos	= strtoupper($_POST["txtTempoMinutos"]);
 
             $sql_comando = "INSERT INTO servicos VALUES(";
-            $sql_comando .= "'$id','$nome_servico','$descricao','$valor_tabela','$custo_estimado','$valor_venda','$tempo_minutos')";
+            $sql_comando .= "'','$nome_servico','$descricao','$valor_tabela','$custo_estimado','$valor_venda','$tempo_minutos')";
 			$sql = mysqli_query($conn, $sql_comando);
 
 			if ($sql){
