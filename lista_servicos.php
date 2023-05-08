@@ -16,11 +16,11 @@
 	$linhas = mysqli_num_rows($resultado);
 ?>
 <script language=javascript>
-function deleteServico(ser_id){
+function deleteServico(msg_proc){
         $.ajax({
             url:"mysql_servicos.php",
             method:"post",
-            data:{ser_id:ser_id,
+            data:{msg_proc:msg_proc,
                   btnAcao:'exc'}
         }).done(function() {
             window.location.reload(true);
@@ -28,14 +28,13 @@ function deleteServico(ser_id){
     }
 $(document).ready(function(){
         $('.diag_data').click(function(){  
-            var ser_id = $(this).attr("id");
-            var msg_proc = ser_id;
-            $('#ser_nome').val(ser_id);
+            var msg_proc = $(this).attr("id");
+            $('#ser_nome').val(msg_proc);
             $('#titulo_proc').val('Alteração de Serviço ');
             $.ajax({  
-                url:"pesq_servicos_modal.php",  
+                url:"pesq_servicos_modal.php",
                 method:"post",  
-                data:{msg_proc:msg_proc},  
+                data:{msg_proc:msg_proc},
                 success:function(data){  
                     $('#msg_proc').html(data);
                     $('#titulo_proc').html('Alteração de Serviço ');
@@ -44,9 +43,9 @@ $(document).ready(function(){
            }); 
         }); 
         $('.diag_incluir').click(function(){  
-            var ser_id = $(this).attr("id");
-            var msg_proc = ser_id;
-            $('#novo_nome').val(ser_id);
+            var msg_proc = $(this).attr("id");
+            var msg_proc = msg_proc;
+            $('#novo_nome').val(msg_proc);
             $('#titulo_inc').val('Inclusão de Serviço ');
             $.ajax({  
                 url:"inc_servicos_modal.php",  
@@ -67,7 +66,7 @@ $(document).ready(function(){
         <p class="mb-4" style="font-size:15px;" style="text-transform:uppercase;"><?php echo $_SESSION['msg'];?></p>
     <? if($_SESSION['funcao'] == 'ADMINISTRATIVO'){?>
         <div class="col-md-12" align="right" style="margin-top: -66px;">
-            <button type="button" id="<?php echo $linhas['ser_id'];?>" name="diag" value="diag" class="btn btn-success btn-icon-split diag_incluir">
+            <button type="button" id="<?php echo $linhas['msg_proc'];?>" name="diag" value="diag" class="btn btn-success btn-icon-split diag_incluir">
                 <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                 </span>
@@ -167,7 +166,7 @@ $(document).ready(function(){
             </div>
             <div class="modal-body">
                 <h5 class="modal-body" name="msg_proc" id="msg_proc"></h5>
-                <input name="ser_nome" type="hidden" id="ser_nome">
+                <input name="msg_proc" type="hidden" id="msg_proc">
             </div>
             <div class="modal-footer" style="background-color: #75ad74;">
                 <button type="submit" class="btn btn-success btn-md" name="btnAcao" id="btnAcao" value="alt">

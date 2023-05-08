@@ -3,10 +3,11 @@
 	include_once("conexao.php");
 
 	//echo "CODIGO ".$_POST['msg_proc'];
-	$_SESSION['reg_servico'] = $_POST['msg_proc'];
+	$_SESSION['reg_servicos'] = $_POST['msg_proc'];
 	
 	if(isset($_POST['msg_proc'])){
 	    $sql_comando = "Select * from servicos where ser_id = ".$_POST['msg_proc'];
+
 		$sql = mysqli_query($conn, $sql_comando);
 
         while($row_dados = mysqli_fetch_array($sql)){
@@ -47,7 +48,7 @@
                 $tabDepend .= '<div  class="row">';
                         $tabDepend .= '<div class="mb-3">
                         <label for="txtDescricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3";value="'.$row_dados['ser_valor_venda'].'"></textarea></div>';
+                        <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3">'.$row_dados['ser_valor_venda'].'</textarea></div>';
 
             }
 
