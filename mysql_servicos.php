@@ -28,8 +28,8 @@
         	$sql_comando .= "ser_nome = '$nome_servico',";
         	$sql_comando .= "ser_descricao = '$descricao',";            
         	$sql_comando .= "ser_valor_tabela = '$valor_tabela',";
-        	$sql_comando .= "ser_custo_estimado = '$custo_estimado'";
-			$sql_comando .= "ser_valor_venda = '$valor_venda'";
+        	$sql_comando .= "ser_custo_estimado = '$custo_estimado',";
+			$sql_comando .= "ser_valor_venda = '$valor_venda',";
 			$sql_comando .= "ser_tempo_minutos = '$tempo_minutos'";
         	$sql_comando .= "where ser_id = '".$_SESSION['reg_servicos']."'";
 
