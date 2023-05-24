@@ -12,3 +12,28 @@ function extract_numbers_tel($string){
     $return = str_replace(" ","",$return);
     return $return;
 }
+
+function print_rr($arg = '') {
+    if (is_array($arg)) {
+        array_walk_recursive($arg, function (&$item, $key) {
+            $item = gettype($item) == 'string' ? strip_tags($item) : $item;
+        });
+    }
+    echo '<pre>';
+    print_r($arg);
+    echo '</pre>';
+}
+
+function converterDataHoraBd($dataHoraAmericano) {
+    // Converte a data e hora para formato americano
+    $dateTime = DateTime::createFromFormat('Y-m-d\TH:i', $dataHoraAmericano);
+    $dataHoraAmericano = $dateTime->format('Y-m-d H:i:s');
+
+    return $dataHoraAmericano;
+}
+function converterDataHoraDisplay($dataHoraAmericano) {
+    // Converte a data e hora para formato brasileiro
+    $dataHoraBrasileiro = DateTime::createFromFormat('Y-m-d H:i:s', $dataHoraAmericano)->format('d/m/Y H:i:s');
+
+    return $dataHoraBrasileiro;
+}
