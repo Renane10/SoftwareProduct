@@ -48,7 +48,7 @@
                 $tabDepend .= '<div  class="row">';
                         $tabDepend .= '<div class="mb-3">
                         <label for="txtDescricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3">'.$row_dados['ser_valor_venda'].'</textarea></div>';
+                        <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3">'.$row_dados['ser_descricao'].'</textarea></div>';
 
             }
 
