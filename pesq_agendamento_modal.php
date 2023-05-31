@@ -1,58 +1,77 @@
 <?php
-	session_start();
-	include_once("conexao.php");
+session_start();
+include_once("conexao.php");
+$q_usu = "select usu_id,usu_nome from usuarios where ativo = 'T' order by usu_id";
+$res_usu = mysqli_query($conn,$q_usu);
 
-	//echo "CODIGO ".$_POST['msg_proc'];
-	$_SESSION['reg_servicos'] = $_POST['msg_proc'];
-	
-	if(isset($_POST['msg_proc'])){
-	    $sql_comando = "Select * from servicos where ser_id = ".$_POST['msg_proc'];
+$sql_comando = "Select * from agendamentos where id = ".$_POST['msg_proc'];
+$sql = mysqli_query($conn, $sql_comando);
 
-		$sql = mysqli_query($conn, $sql_comando);
+$q_cliente   = "select cli_id,cli_nome from clientes order by cli_id";
+$res_cliente = mysqli_query($conn,$q_cliente);
 
-        while($row_dados = mysqli_fetch_array($sql)){
+$q_ser   = "select ser_id,ser_nome from servicos order by ser_id";
+$res_ser = mysqli_query($conn,$q_ser);
 
-			$tabDepend = '<div class="container">';
 
-            //linha de nome/tempo
-                $tabDepend .= '<div  class="row">';
-                    $tabDepend .= '<div  class="col-md-2"><label class="control-label">Nome</label></div>';
-                    $tabDepend .= '<div  class="col-md-4"><input type="text" class="form-control" id="txtNomeServicos" name="txtNomeServicos" size="10px"; value="'.$row_dados['ser_nome'].'"></div>';    
-                    $tabDepend .= '</div></br>';
-                
-            //linha de tempo
-                $tabDepend .= '<div  class="row">';
-                    $tabDepend .= '<div  class="col-md-2"><label class="control-label">Tempo (MIN)</label></div>';
-                    $tabDepend .= '<div  class="col-md-4"><input type="text" class="form-control" id="txtTempoMinutos" name="txtTempoMinutos" size="10px"; value="'.$row_dados['ser_tempo_minutos'].'"></div>';    
-                    $tabDepend .= '</div></br>';
-                
-            //linha de valor tabela
-                $tabDepend .= '<div  class="row">';
-                    $tabDepend .= '<div  class="col-md-2"><label class="control-label">Valor de tabela R$</label></div>';
-                    $tabDepend .= '<div  class="col-md-4"><input type="text" class="form-control" id="txtValorTabela" name="txtValorTabela" size="10px"; value="'.$row_dados['ser_valor_tabela'].'"></div>';
-                    $tabDepend .= '</div></br>';
 
-            //linha de custo estimado
-                $tabDepend .= '<div  class="row">';
-                    $tabDepend .= '<div  class="col-md-2"><label class="control-label">Custo estimado R$</label></div>';
-                    $tabDepend .= '<div  class="col-md-4"><input type="text" class="form-control" id="txtCustoEstimado" name="txtCustoEstimado" size="10px"; value="'.$row_dados['ser_custo_estimado'].'"></div>';
-                    $tabDepend .= '</div></br>';
+//echo "CODIGO ".$_POST['msg_proc'];
+$_SESSION['reg_agendamentos'] = $_POST['msg_proc'];
 
-            //linha de valor venda
-                $tabDepend .= '<div  class="row">';
-                    $tabDepend .= '<div  class="col-md-2"><label class="control-label">Valor de venda R$</label></div>';
-                    $tabDepend .= '<div  class="col-md-4"><input type="text" class="form-control" id="txtValorvenda" name="txtValorvenda" size="10px"; value="'.$row_dados['ser_valor_venda'].'"></div>';
-                    $tabDepend .= '</div></br>';
+if(isset($_POST['msg_proc'])){
 
-            //linha de descrição
-                $tabDepend .= '<div  class="row">';
-                        $tabDepend .= '<div class="mb-3">
-                        <label for="txtDescricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="3">'.$row_dados['ser_valor_venda'].'</textarea></div>';
 
-            }
+    while($row_dados = mysqli_fetch_array($sql)){
 
-	        $tabDepend .= '</div>';
-	echo $tabDepend;
+        $tabDepend = '<div class="container">';
+
+        //linha de colaborador
+        $tabDepend .= '<div  class="row">';
+        $tabDepend .= '<div  class="col-md-2"><label class="control-label">Colaborador</label></div>';
+        $tabDepend .= '<div class="col-md-4">
+                    <select class="form-select" aria-label="Default select example" id="txtUsuario" name="txtUsuario" required></div>';
+        while($usuario = mysqli_fetch_assoc($res_usu)){
+            $tabDepend .='<option value="'.$usuario['usu_id'].'">'.$usuario['usu_nome'].'</option>';
+        };
+        $tabDepend .='</select></div>';
+        $tabDepend .= '</div></br>';
+
+
+        //linha de Data
+        $tabDepend .= '<div  class="row">';
+        $tabDepend .= '<div  class="col-md-2"><label class="control-label">Data do Serviço</label></div>';
+        $tabDepend .= '<div  class="col-md-4"><input type="datetime-local" class="form-control" id="txtDate" name="txtDate" size="10px"; value="'.$row_dados['data'].'"></div>';
+        $tabDepend .= '</div></br>';
+
+        //linha de cliente
+        $tabDepend .= '<div  class="row">';
+        $tabDepend .= '<div class="col-md-2"><label class="control-label">Cliente</label></div>';
+        $tabDepend .= '<div class="col-md-4">
+                <select class="form-select" id="txtCliente" name="txtCliente" required>';
+        while($cliente = mysqli_fetch_assoc($res_cliente)){
+            $tabDepend .='<option value="'.$cliente['cli_id'].'">'.$cliente['cli_nome'].'</option>';
+        };
+        $tabDepend .= '</select></div></div></br>';
+
+        //linha de serviços
+        $tabDepend .= '<div  class="row">';
+        $tabDepend .= '<div class="col-md-2"><label class="control-label">Serviço</label></div>';
+        $tabDepend .= '<div class="col-md-4">
+            <select class="form-select" aria-label="Default select example" id="txtServico" name="txtServico" required>';
+        while($servico = mysqli_fetch_assoc($res_ser)){
+            $tabDepend .='<option value="'.$servico['ser_id'].'">'.$servico['ser_nome'].'</option>';
+        };
+        $tabDepend .='</select></div></div></br>';
+        //verificando se ele está ativo para dar checked no checkbox
+        $row_dados['feito'] == 1 ? $checked = 'checked' : $checked = '';
+        //linha de Feito checkbox
+        $tabDepend .= '<div  class="row">';
+        $tabDepend .= '<div  class="col-md-2"><label class="control-label">Feito</label></div>';
+        $tabDepend .= '<div  class="col-md-4"> <input id="switch-shadow" class="switch switch--shadow" id="feito" name="feito" type="checkbox" '.$checked.' />
+                                      <label for="switch-shadow"></div>';
+
+        $tabDepend .= '</div></br>';
     }
+    echo $tabDepend;
+}
 ?>

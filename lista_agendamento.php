@@ -53,8 +53,7 @@
 <form method="POST" action="mysql_agendamento.php" enctype="multipart/form-data">
 <div class="container theme-showcase" role="main">
     <h1 class="h3 mb-2 text-gray-800">Agendamentos de serviços</h1>
-        <p class="mb-4" style="font-size:15px;" style="text-transform:uppercase;"></p>
-    <? if($_SESSION['funcao'] == 'ADMINISTRATIVO'){?>
+        <p class="mb-4" style="font-size:15px;" style="text-transform:uppercase;">Nesta página é acompanhar e realizar agendamentos.</p>
         <div class="col-md-12" align="right" style="margin-top: -66px;">
             <button type="button" id="<?php echo $linhas['usu_id'];?>" name="diag" value="diag" class="btn btn-success btn-icon-split diag_incluir">
                 <span class="icon text-white-50">
@@ -63,8 +62,6 @@
                 <span class="text">Realizar agendamento</span>
             </button>    
         </div>
-
-    <?}?>
         <br>
     <!-- DataTales Example -->
     <div class="card mb-4" style="border-top:.25rem solid #3299CC!important">
